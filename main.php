@@ -1,4 +1,6 @@
 <?php
+
+// Unordered data
 $json_data=
     '[{
         "mon": "Jan",
@@ -61,16 +63,25 @@ $json_data=
         "month_orders": "526"
     }]';
 
+//convert JSon to array
     $data=json_decode($json_data,true);
+
+//add columns as variables 
     $month  = array_column($data, 'mon');
     $month_orders = array_column($data, 'month_orders');
     $name='mon';
-    function date_compare($a, $b)
-     {
+    
+// function to compare dates, strtotime is used to format date to real numbers
+  function date_compare($a, $b)
+  {
     $t1 = strtotime($a['mon']);
     $t2 = strtotime($b['mon']);
     return $t1 - $t2;
-   }    
+  } 
+
+//usort is a function that can sort variables in an array
    usort($data, 'date_compare');
+   
    print_r($data);
+
     ?>
